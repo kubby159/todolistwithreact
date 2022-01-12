@@ -1,0 +1,21 @@
+.todolist-container {
+  position: relative;
+}
+.todolist-container .listitem-add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 40%;
+  right: 50%;
+  bottom: -44px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  width: 84px;
+  height: 84px;
+  cursor: pointer;
+}
+.todolist-container .listitem-add .fa-plus {
+  font-size: 32px;
+  color: #808080;
+}

@@ -1,12 +1,15 @@
 .layout-container {
   width: 324px;
   height: 800px;
-  background-color: tomato;
+  background-color: beige;
   padding: 12px;
   .container-inner {
     width: 100%;
-    height: 100%;
     margin: auto;
-    background-color: beige;
+  }
+  .todolist-container {
+    width: 100%;
+    height: 500px;
+    border: 1px solid #000;
   }
 }
