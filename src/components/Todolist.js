@@ -1,11 +1,13 @@
 import React from "react";
 import Listitem from "./Listitem";
 import "../scss/todolist.scss";
-const Todolist = () => {
+const Todolist = ({ msg }) => {
   return (
     <>
       <ul className="todolist-ul">
-        <Listitem />
+        {msg.map((info) => {
+          return <li key={info.id}>{info.content}</li>;
+        })}
       </ul>
     </>
   );

@@ -1,16 +1,28 @@
 import React, { useState } from "react";
-import Writetodo from "./Writetodo";
 
+import "../scss/writetodo.scss";
+import Todolist from "./Todolist";
 const Listitemadd = () => {
   const [onSwitch, setSwitch] = useState(false);
-  const [displayState, setDisplayState] = useState("block");
+  const [content, setContent] = useState("");
+  const [msg, setMsg] = useState([]);
   function onClick() {
     setSwitch(!onSwitch);
-    console.log(onSwitch);
   }
 
   function disappearWriteList() {
     setSwitch(!onSwitch);
+    let list = {
+      id: msg.length,
+      content: content,
+    };
+
+    setMsg([list, ...msg]);
+    setContent(" ");
+  }
+  console.log(msg);
+  function onChange(event) {
+    setContent(event.target.value);
   }
 
   return (
@@ -18,13 +30,19 @@ const Listitemadd = () => {
       {onSwitch ? (
         <div className="writetodo-container">
           <div className="list-input">
-            <input type="text" placeholder="할 일을 적어주세요!"></input>
+            <input
+              type="text"
+              placeholder="할 일을 적어주세요!"
+              value={content}
+              onChange={onChange}
+            ></input>
             <div className="list-up" onClick={disappearWriteList}>
               <div className="list-up-btn">ADD</div>
             </div>
           </div>
         </div>
       ) : null}
+      {onSwitch ? null : <Todolist msg={msg} />}
       <div className="listitem-add" onClick={onClick}>
         <div className="listitem-btn">
           <i className="fas fa-plus"></i>
