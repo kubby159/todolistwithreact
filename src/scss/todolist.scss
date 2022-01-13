@@ -8,14 +8,43 @@
     left: 40%;
     right: 50%;
     bottom: -44px;
-    border: 1px solid #000;
     border-radius: 50%;
     width: 84px;
     height: 84px;
     cursor: pointer;
+    background-color: #00fb9a;
+
     .fa-plus {
       font-size: 32px;
-      color: #808080;
+      color: rgb(120, 124, 139, 0.4);
     }
+  }
+  .todolist-ul {
+    padding: 24px;
+    .list-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      font-family: "Dongle", sans-serif;
+      font-size: 38px;
+      .list-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        cursor: pointer;
+        .fa-trash-alt {
+          margin-left: 16px;
+        }
+      }
+    }
+  }
+  .Cheer-Msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Dongle", sans-serif;
+    font-size: 36px;
+    font-weight: 700;
   }
 }

@@ -15,12 +15,18 @@ const Listitemadd = () => {
     let list = {
       id: msg.length,
       content: content,
+      checked: false,
     };
+    if (msg.length < 4) {
+      setMsg([list, ...msg]);
+    } else {
+      alert("Stop");
+      setMsg([list]);
+    }
 
-    setMsg([list, ...msg]);
     setContent(" ");
   }
-  console.log(msg);
+
   function onChange(event) {
     setContent(event.target.value);
   }
