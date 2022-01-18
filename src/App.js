@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./components/Header";
 import Todolist from "./components/Todolist";
-import Listitemadd from "./components/Listitemadd";
+
 import "./scss/style.scss";
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
         <Header />
       </div>
       <div className="todolist-container">
-        <Listitemadd />
+        <Todolist />
       </div>
     </div>
   );

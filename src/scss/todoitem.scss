@@ -1,0 +1,22 @@
+.todo-item {
+  width: 50%;
+  padding: 24px;
+  margin-bottom: 12px;
+  display: flex;
+  border: 1px solid #000;
+  border-radius: 12px;
+  .checked-btn {
+    background-color: transparent;
+    border: none;
+  }
+  .todoitem-content {
+    padding-left: 4px;
+    flex: 1;
+  }
+  .todoitem-delete {
+    background-color: transparent;
+    border: none;
+    color: #ff0001;
+    cursor: pointer;
+  }
+}

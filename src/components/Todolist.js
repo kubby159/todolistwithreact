@@ -1,83 +1,70 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react/cjs/react.development";
 
 import "../scss/todolist.scss";
+import CheerMsg from "./CheerMsg";
+import Todoitem from "./Todoitem";
 
-const Todolist = ({ msg }) => {
-  const [onToggle, setToggle] = useState(false);
-  const [listInMsg, setListInMsg] = useState([...msg]);
+const Todolist = () => {
+  // todo
+  const [content, setContent] = useState("");
+  const [todo, setTodo] = useState([]);
+  const [checkedState, setcheckedState] = useState(false);
 
-  const isCompeleted = (currentValue) => {
-    return currentValue.checked === true;
-  };
+  function typeTodo(e) {
+    setContent(e.target.value);
+  }
 
-  const handleChecked = (id) => {
-    setToggle(!onToggle);
-    setListInMsg(
-      listInMsg.map((todo) => {
+  function upLoadTodo() {
+    let todos = {
+      id: todo.length,
+      content: content,
+      checked: false,
+    };
+
+    setTodo([todos, ...todo]);
+    setContent(" ");
+  }
+  const onToggle = (id) => {
+    setTodo(
+      todo.map((todo) => {
         return todo.id === id ? { ...todo, checked: !todo.checked } : todo;
       })
     );
   };
 
-  const onRemove = (id) => {
-    setListInMsg(
-      listInMsg.filter((todo) => {
+  const removeItem = (id) => {
+    setTodo(
+      todo.filter((todo) => {
         return todo.id !== id;
       })
     );
   };
-
   return (
     <>
-      <ul className="todolist-ul">
-        {listInMsg.map((info) => {
-          return (
-            <li key={info.id} className="list-item">
-              <div className="list-content">
-                <span
-                  style={
-                    info.checked
-                      ? {
-                          textDecoration: "line-through",
-                          color: "rgb(169,169,169,0.4)",
-                        }
-                      : null
-                  }
-                >
-                  {info.content}
-                </span>
-              </div>
-              <div className="list-icon">
-                <span>
-                  <i
-                    id={info.id}
-                    className="far fa-check-circle"
-                    onClick={() => handleChecked(info.id)}
-                    style={info.checked ? { color: "#3eff94" } : null}
-                  ></i>
-                </span>
-                <span>
-                  <i
-                    className="far fa-trash-alt"
-                    onClick={() => {
-                      onRemove(info.id);
-                    }}
-                    style={info.checked ? { color: "#ff0001" } : null}
-                  ></i>
-                </span>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
-      <div className="Cheer-Msg">
-        {listInMsg.length > 0 ? (
-          listInMsg.every(isCompeleted) ? (
-            <span>고생하셨어요!</span>
-          ) : (
-            <span>좀만힘내요!</span>
-          )
+      <div className="todolist-inner">
+        <div className="todolist-input">
+          <div className="lay-out"></div>
+          <div className="lay-out"></div>
+          <input
+            type="text"
+            placeholder="할 일을 적어주세요"
+            className="todolist-input"
+            value={content}
+            onChange={typeTodo}
+          />
+          <button className="upload-btn" onClick={upLoadTodo}>
+            ADD
+          </button>
+        </div>
+
+        <ul className="todo-ul">
+          {todo.map((todo) => (
+            <Todoitem todo={todo} removeItem={removeItem} onToggle={onToggle} />
+          ))}
+        </ul>
+        {todo.every((e) => e.checked === true) ? (
+          <div className="cherrMsg">{<CheerMsg todo={todo} />}</div>
         ) : null}
       </div>
     </>
